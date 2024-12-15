@@ -1,12 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
-class Users(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username
+class User(AbstractUser):
+    user = models.CharField(max_length=15, blank=True, null=True)
 
 
 class CategoryRole(models.Model):
@@ -18,11 +15,11 @@ class CategoryRole(models.Model):
 
 
 class Announcement(models.Model):
-    author = models.ForeignKey(Users, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     title = models.CharField(max_length=250)
     content = models.FileField()
-    category = models.ManyToManyField(CategoryRole, through='PostCategoryRole')
+    category = models.ManyToManyField(CategoryRole, through='AnnouncementCategoryRole')
     time_public = models.DateTimeField(auto_now_add=True)
 
 
