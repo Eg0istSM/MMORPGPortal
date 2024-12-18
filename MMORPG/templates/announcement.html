@@ -1,0 +1,36 @@
+
+{% load i18n %}
+
+{% block title %}
+Announcement
+{% endblock title %}
+
+{% block content %}
+    <style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+    </style>
+    {% for model in models %}
+    <div class="model-class">
+        {{ model.name }}
+    </div>
+    {% endfor %}
+        {% if announcements %}
+        <table>
+            <tr>
+                <td>{% "Название" %}</td>
+                <td>{% "Дата публикации" %}</td>
+                <td>{% "Текст" %}</td>
+            </tr>
+            {% for announcement in announcements %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.time_post|date:'d M Y' }}</td>
+                <td>{{ post.text|truncatechars:20 }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        {% else %}
+        <h2>{% trans "Новостей нет! =(" %} </h2>
+        {% endif %}
+    {% endfor %}

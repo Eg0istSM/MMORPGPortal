@@ -14,8 +14,6 @@ class AnnouncementForm(forms.ModelForm):
             'author',
             'title',
             'text',
-            'image',
-            'content',
             'category',
         ]
 

@@ -18,8 +18,7 @@ class Announcement(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     title = models.CharField(max_length=250)
-    content = models.FileField()
-    category = models.ManyToManyField(CategoryRole, through='AnnouncementCategoryRole')
+    category = models.ManyToManyField(CategoryRole, through='AnnouncementCategory')
     time_public = models.DateTimeField(auto_now_add=True)
 
 

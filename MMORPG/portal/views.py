@@ -10,6 +10,7 @@ class AnnouncementsList(ListView):
     model = Announcement
     ordering = '-time_public'
     context_object_name = 'announcements'
+    template_name = 'announcements'
 
 
 class AnnouncementDetail(DetailView):
@@ -22,14 +23,14 @@ class AnnouncementCreate(LoginRequiredMixin, CreateView):
     form_class = AnnouncementForm
     model = Announcement
     template_name = 'announcement_create.html'
-    permission_required = ('news.add_post',)
+    permission_required = ('portal.add_post',)
 
 
 class AnnouncementUpdate(LoginRequiredMixin, UpdateView):
     form_class = AnnouncementForm
     model = Announcement
     template_name = 'announcement_create.html'
-    permission_required = ('news.change_post',)
+    permission_required = ('portal.change_post',)
 
 
 class ConfirmUser(UpdateView):
