@@ -10,7 +10,7 @@ class AnnouncementsList(ListView):
     model = Announcement
     ordering = '-time_public'
     context_object_name = 'announcements'
-    template_name = 'announcements'
+    template_name = 'announcements.html'
 
 
 class AnnouncementDetail(DetailView):

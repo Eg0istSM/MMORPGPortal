@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import CategoryRole, Announcement
 
-# Register your models here.
+
+admin.site.register(CategoryRole)
+admin.site.register(Announcement)

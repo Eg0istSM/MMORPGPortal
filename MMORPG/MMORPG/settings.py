@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    # 'ckeditor',
+    # 'ckeditor_uploader',
+
 ]
 
 SITE_ID = 1
@@ -124,6 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') #
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -139,8 +143,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-# LOGIN_URL = '/accounts/login/'
-# LOGIN_REDIRECT_URL = 'portal/profile/'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = 'portal/profile/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # отправка писем в консоль
 EMAIL_HOST = 'smtp.yandex.ru'
@@ -151,4 +155,13 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 SITE_URL = 'http://127.0.0.1:8000'
+
+#CKEDITOR_UPLOAD_PATH = "uploads/"
+
+ACCOUNT_FORMS = {'signup': 'portal.forms.CommonSignupForm'}
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
