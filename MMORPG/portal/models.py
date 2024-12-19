@@ -32,4 +32,9 @@ class Response(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     time_response = models.DateTimeField(auto_now_add=True)
+    response_accept = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.user} ({self.text[:30]}...)'
+
 

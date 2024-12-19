@@ -52,4 +52,10 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
 
 
-
+# class AnnouncementUserResponse(LoginRequiredMixin,ListView):
+#     model = Response
+#     template_name = 'announcement_user_response.html'
+#     context_object_name = 'response'
+#
+#     def get_context_data(self, **kwargs):
+#         queryset =

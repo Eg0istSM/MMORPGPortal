@@ -143,8 +143,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'portal/profile/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # отправка писем в консоль
 EMAIL_HOST = 'smtp.yandex.ru'
@@ -164,4 +162,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = 'portal/profile/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
 
