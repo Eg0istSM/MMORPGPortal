@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    user = models.CharField(max_length=15, blank=True, null=True)
+    code = models.CharField(max_length=15, blank=True, null=True)
 
 
 class CategoryRole(models.Model):
