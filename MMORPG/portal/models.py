@@ -21,6 +21,9 @@ class Announcement(models.Model):
     category = models.ManyToManyField(CategoryRole, through='AnnouncementCategory')
     time_public = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.title.title()}: {self.text[:20]}'
+
 
 class AnnouncementCategory(models.Model):
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
