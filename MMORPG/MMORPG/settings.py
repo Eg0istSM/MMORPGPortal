@@ -237,4 +237,4 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
+# GDAL_LIBRARY_PATH = 'venv/Lib/site-packages/django/contrib/gis/gdal/libgdal.py'
