@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('post/', include('portal.urls')),
+    path('portal/', include('portal.urls')),
     path('accounts/', include('allauth.urls')),
     # path('ckeditor/', include('ckeditor_uploader.urls')),
 

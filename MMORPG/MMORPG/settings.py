@@ -164,7 +164,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'portal/profile/'
+LOGIN_REDIRECT_URL = '/portal/profile/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 
