@@ -8,8 +8,9 @@ from string import hexdigits
 
 
 class AnnouncementForm(forms.ModelForm):
+
     class Meta:
-        mode = Announcement
+        model = Announcement
         fields = [
             'author',
             'title',

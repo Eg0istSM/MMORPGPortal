@@ -13,10 +13,10 @@ class AnnouncementsList(ListView):
     template_name = 'portal/announcements.html'
 
 
-class AnnouncementDetail(DetailView):
-    model = Announcement
-    template_name = 'portal/announcements.html'
-    context_object_name = 'announcement'
+# class AnnouncementDetail(DetailView):
+#     model = Announcement
+#     template_name = 'portal/announcements.html'
+#     context_object_name = 'announcement'
 
 
 class AnnouncementCreate(LoginRequiredMixin, CreateView):

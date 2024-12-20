@@ -14,6 +14,7 @@ Announcement
         {{ model.name }}
     </div>
     {% endfor %}
+    <h1>{% trans "Список объявлений" %}</h1>
         {% if announcements %}
         <table>
             <tr>
@@ -28,9 +29,9 @@ Announcement
                 <td>{{ post.text|truncatechars:20 }}</td>
             </tr>
             {% endfor %}
-
         </table>
         {% else %}
         <h2>{% trans "Новостей нет! =(" %} </h2>
         {% endif %}
     {% endfor %}
+{% endblock %}
