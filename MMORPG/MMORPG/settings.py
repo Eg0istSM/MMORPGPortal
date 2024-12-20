@@ -207,7 +207,7 @@ CKEDITOR_CONFIGS = {
                 'Preview',
                 'Maximize',
                 'Youtube',
-                'ckeditor-html5-video-master',
+                'html5video',
 
             ]},
         ],
@@ -236,7 +236,7 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath',
             'youtube',
-            'ckeditor-html5-video-master',
+            'html5video',
         ]),
     }
 }
