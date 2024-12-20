@@ -169,8 +169,6 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/portal/profile/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
-CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
-
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -195,7 +193,7 @@ CKEDITOR_CONFIGS = {
                        'Language']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Html5video', 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
@@ -206,8 +204,6 @@ CKEDITOR_CONFIGS = {
                 # put the name of your editor.ui.addButton here
                 'Preview',
                 'Maximize',
-                'Youtube',
-                'html5video',
 
             ]},
         ],
@@ -235,9 +231,12 @@ CKEDITOR_CONFIGS = {
             'dialog',
             'dialogui',
             'elementspath',
-            'youtube',
             'html5video',
         ]),
     }
 }
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
