@@ -206,7 +206,8 @@ CKEDITOR_CONFIGS = {
                 # put the name of your editor.ui.addButton here
                 'Preview',
                 'Maximize',
-                'Youtube'
+                'Youtube',
+                'ckeditor-html5-video-master',
 
             ]},
         ],
@@ -233,8 +234,9 @@ CKEDITOR_CONFIGS = {
             'clipboard',
             'dialog',
             'dialogui',
-            'elementspath'
-            'youtube'
+            'elementspath',
+            'youtube',
+            'ckeditor-html5-video-master',
         ]),
     }
 }
