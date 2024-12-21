@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -24,6 +25,9 @@ class Announcement(models.Model):
 
     def __str__(self):
         return f'{self.title.title()}: {self.text[:20]}'
+
+    def get_absolute_url(self):
+        return reverse('announcement_detail', args=[str(self.id)])
 
 
 class AnnouncementCategory(models.Model):

@@ -24,14 +24,14 @@ class AnnouncementCreate(LoginRequiredMixin, CreateView):
     form_class = AnnouncementForm
     model = Announcement
     template_name = 'portal/announcement_create.html'
-    permission_required = ('portal.add_post',)
+    # permission_required = ('portal.add_announcement',)
 
 
 class AnnouncementUpdate(LoginRequiredMixin, UpdateView):
     form_class = AnnouncementForm
     model = Announcement
     template_name = 'portal/announcement_create.html'
-    permission_required = ('portal.change_post',)
+    # permission_required = ('portal.change_post',)
 
 
 class ConfirmUser(UpdateView):

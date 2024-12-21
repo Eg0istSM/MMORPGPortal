@@ -12,20 +12,12 @@ Announcement
                <td>{% trans "Название" %}</td>
                <td>{% trans "Текст" %}</td>
                <td>{% trans "Дата публикации" %}</td>
-<!--               <td>{% trans "Действие" %}</td>-->
             </tr>
             <tr>
                <td>{{ announcement.title }}</td>
                <td>{{ announcement.text|safe }}</td>
-               <td>{{ announcement.time_post|date:'d M Y' }}</td>
-               <td><button><a href="{% url 'post_comment' post.id %}">Оставить коментарий</a></button></td>
-
+               <td>{{ announcement.time_public|date:'d M Y' }}</td>
             </tr>
         </table>
-        <h3>Комментарии:</h3>
-        {% for comment in post.comment_set.all %}
-        <p>{% trans "Автор комментария" %}: {{ comment.user }}</p>
-        <p>{% trans "Текст комментария" %}: {{ comment.text }}</p>
-        {% endfor %}
 
 {% endblock content %}
