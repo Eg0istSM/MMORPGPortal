@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 
-from .forms import AnnouncementForm
+from .forms import AnnouncementForm, ResponseForm
 from .models import *
 
 
@@ -13,10 +14,10 @@ class AnnouncementsList(ListView):
     template_name = 'portal/announcements.html'
 
 
-# class AnnouncementDetail(DetailView):
-#     model = Announcement
-#     template_name = 'portal/announcements.html'
-#     context_object_name = 'announcement'
+class AnnouncementDetail(DetailView):
+    model = Announcement
+    template_name = 'portal/announcement.html'
+    context_object_name = 'announcement'
 
 
 class AnnouncementCreate(LoginRequiredMixin, CreateView):
@@ -52,10 +53,18 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
 
 
-# class AnnouncementUserResponse(LoginRequiredMixin,ListView):
-#     model = Response
-#     template_name = 'announcement_user_response.html'
-#     context_object_name = 'response'
-#
-#     def get_context_data(self, **kwargs):
-#         queryset =
+class AnnouncementResponse(LoginRequiredMixin, CreateView):
+    form_class = ResponseForm
+    model = Response
+    template_name = 'portal/response.html'
+    permission_required = ('news.add_post',)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.user = self.request.user
+        comment.post = Announcement.objects.get(pk=self.kwargs['pk'])
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})

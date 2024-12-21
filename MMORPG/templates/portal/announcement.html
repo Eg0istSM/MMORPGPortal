@@ -1,0 +1,31 @@
+{% extends 'flatpages/default.html' %}
+
+{% load i18n %}
+{% block title %}
+Announcement
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ Announcement.title }}</h1>
+        <table>
+            <tr>
+               <td>{% trans "Название" %}</td>
+               <td>{% trans "Текст" %}</td>
+               <td>{% trans "Дата публикации" %}</td>
+<!--               <td>{% trans "Действие" %}</td>-->
+            </tr>
+            <tr>
+               <td>{{ announcement.title }}</td>
+               <td>{{ announcement.text|safe }}</td>
+               <td>{{ announcement.time_post|date:'d M Y' }}</td>
+               <td><button><a href="{% url 'post_comment' post.id %}">Оставить коментарий</a></button></td>
+
+            </tr>
+        </table>
+        <h3>Комментарии:</h3>
+        {% for comment in post.comment_set.all %}
+        <p>{% trans "Автор комментария" %}: {{ comment.user }}</p>
+        <p>{% trans "Текст комментария" %}: {{ comment.text }}</p>
+        {% endfor %}
+
+{% endblock content %}

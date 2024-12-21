@@ -240,3 +240,5 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+SILENCED_SYSTEM_CHECKS = ['ckeditor.W001']

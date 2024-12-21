@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class User(AbstractUser):
@@ -16,7 +17,7 @@ class CategoryRole(models.Model):
 
 class Announcement(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = RichTextUploadingField()
     title = models.CharField(max_length=250)
     category = models.ManyToManyField(CategoryRole, through='AnnouncementCategory')
     time_public = models.DateTimeField(auto_now_add=True)

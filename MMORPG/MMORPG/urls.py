@@ -1,3 +1,4 @@
+
 from ckeditor_uploader.views import upload, browse
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -12,8 +13,8 @@ urlpatterns = [
     path('portal/', include('portal.urls')),
     path('accounts/', include('allauth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    # re_path(r'^upload/', login_required(upload), name='ckeditor_upload'),
-    # re_path(r'^browse/', login_required(never_cache(browse)), name='ckeditor_browse'),
+    re_path(r'^ckeditor/upload/', login_required(upload), name='ckeditor_upload'),
+    re_path(r'^ckeditor/browse/', login_required(never_cache(browse)), name='ckeditor_browse'),
 ]
 
 if settings.DEBUG:
