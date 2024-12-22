@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import request
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
-
+from .filters import ResponseFilter
 from .forms import AnnouncementForm, ResponseForm
 from .models import *
 
@@ -52,6 +53,11 @@ class ConfirmUser(UpdateView):
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     queryset = Response.objects.filter(announcement__author__User_id=request.user.id)
+    #     context['filterset'] = ResponseFilter(self.request.GET, queryset, request=self.request.user.id)
+
 
 class AnnouncementResponse(LoginRequiredMixin, CreateView):
     form_class = ResponseForm
@@ -62,7 +68,7 @@ class AnnouncementResponse(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         comment = form.save(commit=False)
         comment.user = self.request.user
-        comment.post = Announcement.objects.get(pk=self.kwargs['pk'])
+        comment.announcement = Announcement.objects.get(pk=self.kwargs['pk'])
         comment.save()
         return super().form_valid(form)
 
