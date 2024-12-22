@@ -67,4 +67,4 @@ class AnnouncementResponse(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('post_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('announcement_detail', kwargs={'pk': self.kwargs['pk']})

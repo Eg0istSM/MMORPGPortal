@@ -8,6 +8,8 @@ urlpatterns = [
     path('announcements/', AnnouncementsList.as_view(), name='announcements'),
     path('announcement/create/', AnnouncementCreate.as_view(), name='announcementcreate'),
     path('announcement/<int:pk>/', AnnouncementDetail.as_view(), name='announcement_detail'),
-    path('announcement/<int:pk>/edit/', AnnouncementUpdate.as_view, name='announcement_update'),
+    path('announcement/<int:pk>/edit/', AnnouncementUpdate.as_view(), name='announcement_update'),
+    path('<int:pk>/response/', AnnouncementResponse.as_view(), name='announcement_response'),
+
 
 ]

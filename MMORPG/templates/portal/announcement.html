@@ -23,6 +23,9 @@ Announcement
                 <td>
                     {% if announcement.author == user %}
                     <a href="{% url 'announcement_update' announcement.id %}">{% trans "Изменить" %}</a>
+                    {% else %}
+                    <a href="{% url 'announcement_response' announcement.id %}">{% trans "Написать отклик" %}</a>
+
                     {% endif %}
                 </td>
             </tr>
