@@ -9,14 +9,22 @@ Announcement
     <h1>{{ Announcement.title }}</h1>
         <table>
             <tr>
-               <td>{% trans "Название" %}</td>
-               <td>{% trans "Текст" %}</td>
-               <td>{% trans "Дата публикации" %}</td>
+                <td>{% trans "Автор" %}</td>
+                <td>{% trans "Название" %}</td>
+                <td>{% trans "Текст" %}</td>
+                <td>{% trans "Дата публикации" %}</td>
+                <td>{% trans "Действие" %}</td>
             </tr>
             <tr>
-               <td>{{ announcement.title }}</td>
-               <td>{{ announcement.text|safe }}</td>
-               <td>{{ announcement.time_public|date:'d M Y' }}</td>
+                <td>{{ announcement.author }}</td>
+                <td>{{ announcement.title }}</td>
+                <td>{{ announcement.text|safe }}</td>
+                <td>{{ announcement.time_public|date:'d M Y' }}</td>
+                <td>
+                    {% if announcement.author == user %}
+                    <a href="{% url 'announcement_update' announcement.id %}">{% trans "Изменить" %}</a>
+                    {% endif %}
+                </td>
             </tr>
         </table>
 

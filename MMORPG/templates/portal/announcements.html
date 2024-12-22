@@ -25,7 +25,7 @@ Announcements
             {% for announcement in announcements %}
             <tr>
                 <td>{{ announcement.author }}</td>
-                <td><a href="{% url 'announcement_detail' announcement.id %}">{{ announcement.title }}</td>
+                <td><a href="{% url 'announcement_detail' announcement.id %}">{{ announcement.title }}</a></td>
                 <td>{{ announcement.time_public|date:'d M Y' }}</td>
                 <td>{{ announcement.text|safe }}</td>
             </tr>
