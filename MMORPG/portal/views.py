@@ -55,8 +55,9 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
-    #     queryset = Response.objects.filter(announcement__author__User_id=request.user.id)
+    #     queryset = Response.objects.filter(announcement__author__User_id=self.request.user.id)
     #     context['filterset'] = ResponseFilter(self.request.GET, queryset, request=self.request.user.id)
+    #     return context
 
 
 class AnnouncementResponse(LoginRequiredMixin, CreateView):
