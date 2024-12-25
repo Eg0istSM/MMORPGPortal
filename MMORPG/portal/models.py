@@ -24,7 +24,7 @@ class Announcement(models.Model):
     time_public = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.title.title()}: {self.text[:20]}'
+        return f'{self.title.title()}'
 
     def get_absolute_url(self):
         return reverse('announcement_detail', args=[str(self.id)])
