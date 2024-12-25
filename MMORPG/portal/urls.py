@@ -11,7 +11,7 @@ urlpatterns = [
     path('announcement/<int:pk>/edit/', AnnouncementUpdate.as_view(), name='announcement_update'),
     path('<int:pk>/response/', AnnouncementResponse.as_view(), name='announcement_response'),
     path('<int:pk>/response_accept/', response_accept, name='response_accept'),
-    path('<int:pk>/response_delete/', respons_delete, name='respons_delete'),
+    path('<int:pk>/response_delete/', response_delete, name='respons_delete'),
 
 
 

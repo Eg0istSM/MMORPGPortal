@@ -97,7 +97,7 @@ def response_accept(request, pk):
     return redirect('profile')
 
 
-def respons_delete(request, pk):
+def response_delete(request, pk):
     response = Response.objects.get(pk=pk)
     response.delete()
     response.save()
