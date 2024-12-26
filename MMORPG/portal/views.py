@@ -100,7 +100,6 @@ def response_accept(request, pk):
 def response_delete(request, pk):
     response = Response.objects.get(pk=pk)
     response.delete()
-    response.save()
 
     return redirect('profile')
 
