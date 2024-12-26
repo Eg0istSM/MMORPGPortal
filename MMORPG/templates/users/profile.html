@@ -20,8 +20,8 @@
     {% if resp.response_accept == True %}
     Принят
     {% else %}
-    <a href="{ url 'response_accept' resp.id }">Принять!!!</a>
-    <a href="{ url 'response_delete' resp.id }">Удалить!</a>
+    <a href="{% url 'response_accept' resp.id %}">Принять!!!</a>
+    <a href="{% url 'response_delete' resp.id %}">Удалить!</a>
     {% endif %}
 </p>
 {% endfor %}
