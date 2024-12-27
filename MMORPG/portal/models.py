@@ -13,7 +13,7 @@ class CategoryRole(models.Model):
     subscribers = models.ManyToManyField(User, blank=True, null=True, related_name='categories')
 
     def __str__(self):
-        return self.name.title()
+        return f'{self.name.title()}'
 
 
 class Announcement(models.Model):
