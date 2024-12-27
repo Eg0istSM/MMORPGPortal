@@ -111,7 +111,7 @@ class CategoryListView(ListView):
 
     def get_queryset(self):
         self.category = get_object_or_404(CategoryRole, id=self.kwargs['pk'])
-        queryset = Announcement.objects.filter(category=self.category).order_by('-time_post')
+        queryset = Announcement.objects.filter(category=self.category).order_by('-time_public')
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -127,7 +127,7 @@ def subscribe(request, pk):
     category = CategoryRole.objects.get(id=pk)
     category.subscribers.add(user)
 
-    message = 'Вы успешно подписались на рассылку'
+    message = 'Вы успешно подписались на рассылку категориии '
     return render(request, 'portal/subscribe.html', {'category': category, 'message': message})
 
 

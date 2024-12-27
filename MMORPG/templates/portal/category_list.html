@@ -1,6 +1,5 @@
 {% extends 'flatpages/default.html' %}
 {% load i18n %}
-{% load custom_filters %}
 
 {% block title %}
     Поиск публикаций
@@ -10,8 +9,7 @@
     {% if is_not_subscriber %}
         <p class="text-center"><a href="{%url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
     {% endif %}
-<h1>{% trans "Количество публикаций" %}: {{ posts|length }} </h1>
-    <h1>{% trans "Список новостей" %}</h1>
+<h1> Все объявления в категории {{ category }} </h1>
     <hr>
     {% if category_list %}
         <table>
@@ -27,16 +25,13 @@
                 <td>{{ announcement.title }}</td>
                 <td>{{ announcement.time_post|date:'d M Y' }}</td>
                 <td>{{ announcement.text|truncatechars:20 }}</td>
-                <td>{% for category in announcement.category.all %}
-                        <a href="{% url 'category_list' category.id %}">{{ announcement.category }}</a>
-                    {% endfor %}
-                </td>
+                <td>{{ announcement.category }}</td>
             </tr>
             {% endfor %}
 
         </table>
     {% else %}
-        <h2>{% trans "Новостей нет! =("%} </h2>
+        <h2>{% trans "Объявлений нет! =("%} </h2>
     {% endif %}
 
 {% endblock content %}
