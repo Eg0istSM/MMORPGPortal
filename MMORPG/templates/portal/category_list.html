@@ -12,11 +12,6 @@
     {% endif %}
 <h1>{% trans "Количество публикаций" %}: {{ posts|length }} </h1>
     <h1>{% trans "Список новостей" %}</h1>
-    <form action="" method="get">
-       {{ filterset.form.as_p }}
-       <input type="submit" value="Найти" />
-    </form>
-
     <hr>
     {% if category_list %}
         <table>
@@ -24,7 +19,7 @@
                 <td>{% trans "Название" %}</td>
                 <td>{% trans "Дата публикации" %}</td>
                 <td>{% trans "Текст" %}</td>
-                <td>{% trans "Категории" %}</td>
+                <td>{% trans "Категория" %}</td>
             </tr>
 
             {% for announcement in category_list %}
@@ -33,7 +28,7 @@
                 <td>{{ announcement.time_post|date:'d M Y' }}</td>
                 <td>{{ announcement.text|truncatechars:20 }}</td>
                 <td>{% for category in announcement.category.all %}
-                        <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                        <a href="{% url 'category_list' category.id %}">{{ announcement.category }}</a>
                     {% endfor %}
                 </td>
             </tr>

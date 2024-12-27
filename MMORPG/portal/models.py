@@ -10,7 +10,7 @@ class User(AbstractUser):
 
 class CategoryRole(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    subscribers = models.ManyToManyField(User, blank=True, null=True, related_name='categories')
+    subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
         return f'{self.name.title()}'
@@ -20,7 +20,7 @@ class Announcement(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = RichTextUploadingField()
     title = models.CharField(max_length=250)
-    category = models.ManyToManyField(CategoryRole, through='AnnouncementCategory')
+    category = models.ForeignKey(CategoryRole, on_delete=models.CASCADE)
     time_public = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -29,10 +29,6 @@ class Announcement(models.Model):
     def get_absolute_url(self):
         return reverse('announcement_detail', args=[str(self.id)])
 
-
-class AnnouncementCategory(models.Model):
-    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
-    category = models.ForeignKey(CategoryRole, on_delete=models.CASCADE)
 
 
 class Response(models.Model):

@@ -29,9 +29,7 @@ Announcements
                 <td><a href="{% url 'announcement_detail' announcement.id %}">{{ announcement.title }}</a></td>
                 <td>{{ announcement.time_public|date:'d M Y' }}</td>
                 <td>{{ announcement.text|safe }}</td>
-                <td>{% for category in announcement.category.all %}
-                        <a href="{% url 'category_list' category.id %}">{{ category }}</a>
-                    {% endfor %}
+                <td>{{ announcement.category }}</td>
             </tr>
             {% endfor %}
         </table>
