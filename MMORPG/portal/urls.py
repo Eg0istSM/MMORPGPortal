@@ -12,6 +12,8 @@ urlpatterns = [
     path('<int:pk>/response/', AnnouncementResponse.as_view(), name='announcement_response'),
     path('<int:pk>/response_accept/', response_accept, name='response_accept'),
     path('<int:pk>/response_delete/', response_delete, name='response_delete'),
+    path('categories/<int:pk>', CategoryListView.as_view, name='category_list'),
+    path('categories/<int:pk>/subscribe', subscribe, name='subscribe'),
 
 
 

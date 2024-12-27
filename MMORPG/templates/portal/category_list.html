@@ -1,0 +1,47 @@
+{% extends 'flatpages/default.html' %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block title %}
+    Поиск публикаций
+{% endblock title %}
+
+{% block content %}
+    {% if is_not_subscriber %}
+        <p class="text-center"><a href="{%url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
+    {% endif %}
+<h1>{% trans "Количество публикаций" %}: {{ posts|length }} </h1>
+    <h1>{% trans "Список новостей" %}</h1>
+    <form action="" method="get">
+       {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+    </form>
+
+    <hr>
+    {% if category_list %}
+        <table>
+            <tr>
+                <td>{% trans "Название" %}</td>
+                <td>{% trans "Дата публикации" %}</td>
+                <td>{% trans "Текст" %}</td>
+                <td>{% trans "Категории" %}</td>
+            </tr>
+
+            {% for announcement in category_list %}
+            <tr>
+                <td>{{ announcement.title }}</td>
+                <td>{{ announcement.time_post|date:'d M Y' }}</td>
+                <td>{{ announcement.text|truncatechars:20 }}</td>
+                <td>{% for category in announcement.category.all %}
+                        <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+        <h2>{% trans "Новостей нет! =("%} </h2>
+    {% endif %}
+
+{% endblock content %}

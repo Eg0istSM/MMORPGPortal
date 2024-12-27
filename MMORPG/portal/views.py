@@ -1,13 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from .filters import ResponseFilter
 from .forms import AnnouncementForm, ResponseForm
 from .models import *
 from django.conf import settings
-
 
 
 class AnnouncementsList(ListView):
@@ -102,4 +102,32 @@ def response_delete(request, pk):
     response.delete()
 
     return redirect('profile')
+
+
+class CategoryListView(ListView):
+    model = Announcement
+    template_name = 'portal/category_list.html'
+    context_object_name = 'category_list'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(CategoryRole, id=self.kwargs['pk'])
+        queryset = Announcement.objects.filter(category=self.category).order_by('-time_post')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = CategoryRole.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'Вы успешно подписались на рассылку'
+    return render(request, 'portal/subscribe.html', {'category': category, 'message': message})
+
 
