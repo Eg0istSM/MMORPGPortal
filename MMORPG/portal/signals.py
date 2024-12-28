@@ -1,16 +1,16 @@
 from django.core.mail import EmailMultiAlternatives
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.conf import settings
 from .models import Announcement
 
 
-def send_notifications(preview, pk, title, subscribers):
+def send_notifications(preview, pk, title, subscriber):
     html_content = render_to_string(
-        'announcement_created_email.html',
+        'users/announcement_created_email.html',
         {
-            'username': subscribers.username,
+            'username': subscriber.username,
             'text': preview,
             'link': f'{settings.SITE_URL}/portal/announcement/{pk}',
         }
@@ -20,7 +20,7 @@ def send_notifications(preview, pk, title, subscribers):
         subject=title,
         body='',
         from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[subscribers.email],
+        to=[subscriber.email],
 
     )
 
@@ -28,17 +28,15 @@ def send_notifications(preview, pk, title, subscribers):
     msg.send()
 
 
-@receiver(m2m_changed, sender=Announcement)
-def notify_about_new_post(sender, instance, **kwargs):
-    if kwargs['action'] == 'post_add':
-        categories = instance.category.all()
+@receiver(post_save, sender=Announcement)
+def notify_about_new_post(sender, instance, created, **kwargs):
+    if created:
+        category_instance = instance.category
         subscribers_emails = []
+        subscribers = category_instance.subscribers.all()
+        for subscriber in subscribers:
 
-        for cat in categories:
-            subscribers = cat.subsribers.all()
-            subscribers_emails += [s.email for s in subscribers]
-
-        send_notifications(instance.preview(), instance.pk, instance.title, subscribers_emails)
+            send_notifications(instance.preview(), instance.pk, instance.title, subscriber)
 
 
 
