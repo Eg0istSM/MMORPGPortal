@@ -1,6 +1,5 @@
 {% extends 'flatpages/default.html' %}
 
-{% load i18n %}
 {% block title %}
 Announcement
 {% endblock title %}
@@ -9,11 +8,11 @@ Announcement
     <h1>{{ Announcement.title }}</h1>
         <table>
             <tr>
-                <td>{% trans "Автор" %}</td>
-                <td>{% trans "Название" %}</td>
-                <td>{% trans "Текст" %}</td>
-                <td>{% trans "Дата публикации" %}</td>
-                <td>{% trans "Действие" %}</td>
+                <td>Автор</td>
+                <td>Название</td>
+                <td>Текст</td>
+                <td>Дата публикации</td>
+                <td>Действие</td>
             </tr>
             <tr>
                 <td>{{ announcement.author }}</td>
@@ -22,9 +21,9 @@ Announcement
                 <td>{{ announcement.time_public|date:'d M Y' }}</td>
                 <td>
                     {% if announcement.author == user %}
-                    <a href="{% url 'announcement_update' announcement.id %}">{% trans "Изменить" %}</a>
+                    <a href="{% url 'announcement_update' announcement.id %}">Изменить</a>
                     {% else %}
-                    <a href="{% url 'announcement_response' announcement.id %}">{% trans "Написать отклик" %}</a>
+                    <a href="{% url 'announcement_response' announcement.id %}">Написать отклик</a>
 
                     {% endif %}
                 </td>

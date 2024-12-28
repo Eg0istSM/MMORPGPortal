@@ -131,3 +131,19 @@ def subscribe(request, pk):
     return render(request, 'portal/subscribe.html', {'category': category, 'message': message})
 
 
+@login_required
+def unsubscribe(request, pk):
+    user = request.user
+    category = CategoryRole.objects.get(id=pk)
+    category.subscribers.remove(user)
+
+    message = 'Вы успешно отписались от рассылки '
+    return render(request, 'portal/unsubscribe.html', {'category': category, 'message': message})
+
+
+def categories(request):
+    cat = CategoryRole.objects.all()
+    return render(request, 'portal/categories.html', {'cat': cat})
+
+
+

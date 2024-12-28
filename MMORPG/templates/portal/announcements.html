@@ -1,5 +1,4 @@
 {% extends 'flatpages/default.html' %}
-{% load i18n %}
 
 {% block title %}
 Announcements
@@ -12,16 +11,16 @@ Announcements
         {{ model.name }}
     </div>
     {% endfor %}
-    <h1>{% trans "Количество публикаций" %}: {{ announcements|length }} </h1>
-    <h1>{% trans "Список постов" %}</h1>
+    <h1>Количество публикаций: {{ announcements|length }} </h1>
+    <h1>Список постов</h1>
         {% if announcements %}
         <table>
             <tr>
-                <td>{% trans "Автор" %}</td>
-                <td>{% trans "Название" %}</td>
-                <td>{% trans "Дата публикации" %}</td>
-                <td>{% trans "Текст" %}</td>
-                <td>{% trans "Категория" %}</td>
+                <td>Автор</td>
+                <td>Название</td>
+                <td>Дата публикации</td>
+                <td>Текст</td>
+                <td>Категория</td>
             </tr>
             {% for announcement in announcements %}
             <tr>
@@ -34,6 +33,6 @@ Announcements
             {% endfor %}
         </table>
         {% else %}
-        <h2>{% trans "Новостей нет! =(" %} </h2>
+        <h2>Объявлений нет! =( </h2>
         {% endif %}
 {% endblock %}

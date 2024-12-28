@@ -14,10 +14,10 @@
     {% if category_list %}
         <table>
             <tr>
-                <td>{% trans "Название" %}</td>
-                <td>{% trans "Дата публикации" %}</td>
-                <td>{% trans "Текст" %}</td>
-                <td>{% trans "Категория" %}</td>
+                <td>Название</td>
+                <td>Дата публикации</td>
+                <td>Текст</td>
+                <td>Категория</td>
             </tr>
 
             {% for announcement in category_list %}
@@ -31,7 +31,7 @@
 
         </table>
     {% else %}
-        <h2>{% trans "Объявлений нет! =("%} </h2>
+        <h2>Объявлений нет! =( </h2>
     {% endif %}
 
 {% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+    Все категории!!!
+{% endblock title %}
+
+{% block content %}
+    <hr>
+    {% if cat %}
+    {% for c in cat %}
+    <p>
+        {{ c.name }}
+        {% if not user in c.subscribers.all %}
+        <a href="{%url 'subscribe' c.id %}" class="btn btn-secondary btn-sm">Подписаться</a>
+        {% else %}
+        <a href="{%url 'unsubscribe' c.id %}" class="btn btn-secondary btn-sm">Отписаться</a>
+    {% endif %}
+    </p>
+
+    {% endfor %}
+
+    {% endif %}
+{% endblock content %}
