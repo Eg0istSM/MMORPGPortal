@@ -23,12 +23,15 @@ class Announcement(models.Model):
     category = models.ForeignKey(CategoryRole, on_delete=models.CASCADE)
     time_public = models.DateTimeField(auto_now_add=True)
 
+    def preview(self):
+        preview_text = self.text[0:30] + '...'
+        return preview_text
+
     def __str__(self):
         return f'{self.title.title()}'
 
     def get_absolute_url(self):
         return reverse('announcement_detail', args=[str(self.id)])
-
 
 
 class Response(models.Model):
